@@ -1,14 +1,16 @@
-SECRET_KEY = "change-this-to-a-random-string"
-OTP_MODE = "console"
-SMTP_HOST = "smtp.gmail.com"
-SMTP_PORT = 587
-SMTP_USERNAME = "your_email@gmail.com"
-SMTP_PASSWORD = "your_gmail_app_password"
-NOTIFY_EMAIL_TO = "your_email@gmail.com"
-NOTIFY_CHANNEL = "email"
-TELEGRAM_BOT_TOKEN = ""
-TELEGRAM_CHAT_ID = ""
-TWILIO_SID = ""
-TWILIO_AUTH_TOKEN = ""
-TWILIO_FROM_NUMBER = ""
-CHECK_INTERVAL_MINUTES = 30
+import os
+
+SECRET_KEY = os.environ.get("SECRET_KEY", "dev-only-change-me")
+OTP_MODE = os.environ.get("OTP_MODE", "console")
+SMTP_HOST = os.environ.get("SMTP_HOST", "smtp.gmail.com")
+SMTP_PORT = int(os.environ.get("SMTP_PORT", "587"))
+SMTP_USERNAME = os.environ.get("SMTP_USERNAME", "")
+SMTP_PASSWORD = os.environ.get("SMTP_PASSWORD", "")
+NOTIFY_EMAIL_TO = os.environ.get("NOTIFY_EMAIL_TO", "")
+NOTIFY_CHANNEL = os.environ.get("NOTIFY_CHANNEL", "email")
+TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "")
+TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "")
+TWILIO_SID = os.environ.get("TWILIO_SID", "")
+TWILIO_AUTH_TOKEN = os.environ.get("TWILIO_AUTH_TOKEN", "")
+TWILIO_FROM_NUMBER = os.environ.get("TWILIO_FROM_NUMBER", "")
+CHECK_INTERVAL_MINUTES = int(os.environ.get("CHECK_INTERVAL_MINUTES", "30"))

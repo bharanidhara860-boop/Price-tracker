@@ -165,3 +165,6 @@ if __name__ == "__main__":
     t = threading.Thread(target=background_loop, daemon=True)
     t.start()
     app.run(debug=True)
+
+if __name__ != "__main__":
+    threading.Thread(target=background_loop, daemon=True).start()
