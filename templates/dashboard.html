@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+  <title>Dashboard - Price Tracker</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <h1>Your Tracked Products</h1>
+      <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}<div class="flash">{{ messages[0] }}</div>{% endif %}
+    {% endwith %}
+
+    <form method="POST" action="{{ url_for('add_product') }}" class="add-form">
+      <input type="url" name="url" placeholder="Paste Flipkart or Amazon product URL" required>
+      <button type="submit">+ Add & Track</button>
+    </form>
+
+    <form method="POST" action="{{ url_for('check_now') }}">
+      <button type="submit" class="secondary">Check prices now</button>
+    </form>
+
+    {% if products %}
+    <label for="product-select">Select a product:</label>
+    <select id="product-select" onchange="document.getElementById('row-'+this.value).scrollIntoView({behavior:'smooth', block:'center'})">
+      <option value="">-- choose a tracked item --</option>
+      {% for p in products %}
+        <option value="{{ loop.index0 }}">{{ p.title[:60] }} - Rs.{{ p.current_price }}</option>
+      {% endfor %}
+    </select>
+    {% endif %}
+
+    <table>
+      <thead>
+        <tr><th>Product</th><th>Current Price</th><th>Lowest Seen</th><th></th></tr>
+      </thead>
+      <tbody>
+        {% for p in products %}
+        <tr id="row-{{ loop.index0 }}">
+          <td><a href="{{ p.url }}" target="_blank">{{ p.title }}</a></td>
+          <td>Rs.{{ p.current_price }}</td>
+          <td>Rs.{{ p.lowest_price }}</td>
+          <td>
+            <form method="POST" action="{{ url_for('remove_product', index=loop.index0) }}">
+              <button type="submit" class="danger">Remove</button>
+            </form>
+          </td>
+        </tr>
+        {% else %}
+        <tr><td colspan="4">No products tracked yet. Add one above.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

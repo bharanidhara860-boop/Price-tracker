@@ -1,0 +1,14 @@
+SECRET_KEY = "change-this-to-a-random-string"
+OTP_MODE = "console"
+SMTP_HOST = "smtp.gmail.com"
+SMTP_PORT = 587
+SMTP_USERNAME = "your_email@gmail.com"
+SMTP_PASSWORD = "your_gmail_app_password"
+NOTIFY_EMAIL_TO = "your_email@gmail.com"
+NOTIFY_CHANNEL = "email"
+TELEGRAM_BOT_TOKEN = ""
+TELEGRAM_CHAT_ID = ""
+TWILIO_SID = ""
+TWILIO_AUTH_TOKEN = ""
+TWILIO_FROM_NUMBER = ""
+CHECK_INTERVAL_MINUTES = 30

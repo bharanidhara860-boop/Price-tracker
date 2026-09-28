@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<head>
+  <title>Verify OTP - Price Tracker</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="card">
+    <h1>Enter OTP</h1>
+    <p>Sent to {{ mobile }}</p>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}<div class="flash">{{ messages[0] }}</div>{% endif %}
+    {% endwith %}
+    <form method="POST">
+      <input type="text" name="otp" placeholder="6-digit OTP" maxlength="6" required>
+      <button type="submit">Verify</button>
+    </form>
+  </div>
+</body>
+</html>

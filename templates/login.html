@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<head>
+  <title>Login - Price Tracker</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="card">
+    <h1>Price Tracker</h1>
+    <p>Enter your mobile number to receive an OTP.</p>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}<div class="flash">{{ messages[0] }}</div>{% endif %}
+    {% endwith %}
+    <form method="POST">
+      <input type="tel" name="mobile_number" placeholder="e.g. +91XXXXXXXXXX" required>
+      <button type="submit">Send OTP</button>
+    </form>
+  </div>
+</body>
+</html>
